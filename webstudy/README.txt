@@ -1,1 +1,1 @@
-this is a demo for spring MVC.
+this is a demo for spring MVC. :)
