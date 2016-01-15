@@ -6,6 +6,7 @@ import java.util.Date;
 
 /**
  * http://www.joda.org/
+ * http://stackoverflow.com/questions/2201925/converting-iso-8601-compliant-string-to-java-util-date
  *
  * Created by hongkai on 2016/1/15.
  */
