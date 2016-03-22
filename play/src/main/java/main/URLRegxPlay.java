@@ -15,7 +15,7 @@ public class URLRegxPlay {
 
     public static void main(String args[]) {
         String[] urls = {"http://www.baidu.com","http://www.baidu.com.","http://dceast.com:84",
-                "http://192.123.43.22:80","http://193.23","www.baidu.com.", "www.baidu.com"};
+                "http://192.123.43.22:80","http://193.23","www.baidu.com.", "www.baidu.com", "www.dddddddddd.xxxxxxxxxxxxx"};
         for(String url : urls){
             System.out.println(url + "  ---  " + isValidUrl(url));
         }
@@ -23,7 +23,7 @@ public class URLRegxPlay {
 
     private static final String ipRegx = "(?:[0-9]{1,3}\\.){3}[0-9]{1,3}";
     private static final String portRegx = ":\\d+";
-    private static final String domain = "[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}";
+    private static final String domain = "[-a-zA-Z0-9@:%._\\+~#=]{1,1024}\\.[a-z]+";
 
     private static boolean isValidUrl(String url) {
         String urlRegx = String.format("^(http://)?(%s|%s)(%s)?$", domain, ipRegx, portRegx);
