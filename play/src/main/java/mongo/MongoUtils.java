@@ -59,4 +59,5 @@ public class MongoUtils {
 
     private static ConcurrentMap<String, BeanMap> beanMapCache = new ConcurrentHashMap<String, BeanMap>();
     private static BeanMap.Generator generator = new BeanMap.Generator();
+
 }

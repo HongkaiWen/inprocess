@@ -10,6 +10,9 @@ import java.util.regex.Pattern;
  */
 public class UrlCheck {
     public static void main(String args[]){
+        String url = "www.baidu.com/";
+        System.out.println(isValidUrl(url));
+
         String[] urls = {"http://www.baidu.com", "http://www.baidu.com:8080", "www.baidu.com",
                 "http://10.23.33.21", "12.34.21.34", "http://12.45.32.21:3456", "12.34.21.34:3322",
                 "12.34.21.34:3322/xxx","http://www.baidu.com:80/xxx", "http://www.baidu.com:80?abc=222",
@@ -61,7 +64,7 @@ public class UrlCheck {
         if(StringUtils.isEmpty(url)){
             return false;
         }
-        String urlRegx = String.format("^(http://)?(%s|%s)(%s)?(/[\\S]+)?$", domain, ipRegxPart, portRegx);
+        String urlRegx = String.format("^(http://)?(%s|%s)(%s)?(/|(/[\\S]+))?$", domain, ipRegxPart, portRegx);
         Pattern pattern = Pattern.compile(urlRegx, Pattern.CASE_INSENSITIVE);
         Matcher m = pattern.matcher(url);
         return m.find() && isValidPort(url);
