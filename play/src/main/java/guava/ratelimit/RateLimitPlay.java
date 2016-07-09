@@ -1,4 +1,4 @@
-package ratelimit;
+package guava.ratelimit;
 
 import com.google.common.util.concurrent.RateLimiter;
 
@@ -85,7 +85,7 @@ public class RateLimitPlay {
     private static void prepareTestTasks(int concurrent){
         for(int i=0; i<concurrent; i++){
             executorService.execute(new Runnable() {
-                @Override
+
                 public void run() {
                     try {
                         startGate.await();
@@ -131,7 +131,7 @@ public class RateLimitPlay {
 
     private static void recordRequest(){
         executorService.execute(new Runnable() {
-            @Override
+
             public void run() {
                 passRequestTimes.add(System.currentTimeMillis());
             }
@@ -141,7 +141,7 @@ public class RateLimitPlay {
     private static void statics(){
         //sort
         Collections.sort(passRequestTimes, new Comparator<Long>() {
-            @Override
+
             public int compare(Long o1, Long o2) {
                 return (int) (o1 - o2);
             }
