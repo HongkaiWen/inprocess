@@ -21,9 +21,9 @@ public class RateLimitPlay {
     //MILLISECONDS
     private static Integer TPR = 500;
     //second
-    private static Integer TEST_TIME = 60;
+    private static Integer TEST_TIME = 120;
 
-    private static RateLimiter rateLimiter = RateLimiter.create(QPS);
+    private static RateLimiter rateLimiter = RateLimiter.create(QPS, 0, TimeUnit.SECONDS);
 
     private static List<Long> passRequestTimes = Collections.synchronizedList(new ArrayList<Long>());
 
