@@ -21,7 +21,7 @@ public class RateLimitPlay {
     //MILLISECONDS
     private static Integer TPR = 500;
     //second
-    private static Integer TEST_TIME = 120;
+    private static Integer TEST_TIME = 300;
 
     private static RateLimiter rateLimiter = RateLimiter.create(QPS, 0, TimeUnit.SECONDS);
 
@@ -91,6 +91,7 @@ public class RateLimitPlay {
                         startGate.await();
                         while(!Thread.currentThread().isInterrupted() &&
                                 System.currentTimeMillis() <= testEndTime){
+//                            boolean acquire = rateLimiter.tryAcquire(1, 1, TimeUnit.SECONDS);
                             boolean acquire = rateLimiter.tryAcquire(1);
                             if(!acquire){
                                 continue;
