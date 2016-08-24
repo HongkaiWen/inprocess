@@ -119,11 +119,13 @@
             <artifactId>guava</artifactId>
             <version>18.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.drewnoakes/metadata-extractor -->
         <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.1.0.7.0</version>
+            <groupId>com.drewnoakes</groupId>
+            <artifactId>metadata-extractor</artifactId>
+            <version>2.6.2</version>
         </dependency>
+
 
     </dependencies>
 
