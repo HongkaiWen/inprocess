@@ -9,6 +9,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class HelloWorldAction extends HttpServlet {
 
@@ -19,6 +20,12 @@ public class HelloWorldAction extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		HttpSession session = req.getSession(true);
+		Object abc = session.getAttribute("abc");
+		if(null == abc){
+			session.setAttribute("abc", "local");
+		}
+		System.out.println("set user info session id is " + session.getId());
 	}
 	
 	@Override
@@ -42,25 +49,6 @@ public class HelloWorldAction extends HttpServlet {
 	@Override
 	public void service(ServletRequest req, ServletResponse res)
 			throws ServletException, IOException {
-		System.out.println(req.getRemoteHost());
-		System.out.println(req.getProtocol());
-		HttpServletRequest request = (HttpServletRequest) req;
-		Enumeration headerNames = request.getHeaderNames();
-		while(headerNames.hasMoreElements()){
-			Object o = headerNames.nextElement();
-			System.out.println(o.toString() + "       " + request.getHeader(o.toString()));
-		}
-
-		HttpServletResponse response = (HttpServletResponse) res;
-
-		String origin = request.getHeader("origin");
-		if(origin != null && origin.length() != 0){
-			response.setHeader("Access-Control-Allow-Origin", origin);
-			response.setHeader("Access-Control-Allow-Credentials", "true");
-		}
-
-		res.getWriter().print("h1");
-		HelloWorldAction2.a = "wanxiaodou";
 		super.service(req, res);
 	}
 

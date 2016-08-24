@@ -52,7 +52,7 @@ public class BoundedDelayQueue<E extends Delayed> extends AbstractQueue<E>
         this.capacity = Integer.MAX_VALUE;
     }
 
-    private final int capacity;
+    private volatile int capacity;
 
     public BoundedDelayQueue(int capacity) {
         this.capacity = capacity;
@@ -492,4 +492,7 @@ public class BoundedDelayQueue<E extends Delayed> extends AbstractQueue<E>
         }
     }
 
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
 }

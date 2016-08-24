@@ -11,19 +11,19 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HelloWorldAction</servlet-name>
-		<url-pattern>/h1</url-pattern>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-		<servlet-name>HelloWorldAction2</servlet-name>
-		<servlet-class>com.xiaokai.servlet.action.HelloWorldAction2</servlet-class>
+		<servlet-name>getInfo</servlet-name>
+		<servlet-class>com.xiaokai.servlet.action.GetInfo</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>HelloWorldAction2</servlet-name>
-		<url-pattern>/h2</url-pattern>
+		<servlet-name>getInfo</servlet-name>
+		<url-pattern>/getinfo</url-pattern>
 	</servlet-mapping>
 	
-	 <filter>     
+	 <filter>
         <filter-name>common filter</filter-name>     
         <filter-class>com.xiaokai.servlet.action.EncodingFilter</filter-class>     
     </filter>     
