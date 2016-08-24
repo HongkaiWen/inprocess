@@ -21,7 +21,8 @@ public class Play {
     private static AtomicLong failedMaxDelayTime = new AtomicLong(0);
 
 
-    static UnSortDelayQueue<RequestHistory> requests = new UnSortDelayQueue<RequestHistory>(maxRatePerSecond);
+//    static UnSortDelayQueue<RequestHistory> requests = new UnSortDelayQueue<RequestHistory>(maxRatePerSecond);
+    static UnSortDelayQueue<RequestHistory> requests = null;
 
     private static CountDownLatch startGate = new CountDownLatch(1);
 
