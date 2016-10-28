@@ -1,25 +1,42 @@
 package main;
 
-import java.math.BigDecimal;
+
+import com.mongodb.BasicDBObject;
+
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hongkai on 2016/2/1.
  */
 public class TempPlay {
 
+    private static final Integer count = 0;
+
     public static void main(String args[]) throws Exception {
-        for(int i=1; i<11; i++){
-            for(double j=1; j<11; j++){
-                System.out.println(String.format("instance: %d, rate: %f, rate2: %f", i, j, calcMaxTps(j, i)));
-            }
+        List<Integer> list = new ArrayList<Integer>();
+        for(int a=1; a<=103; a++){
+            list.add(a);
+        }
+        print(list);
+    }
+
+    public static void print(List<Integer> list){
+        int maxMsgCountPerPush = 10;
+        int msgCount = list.size();
+        System.out.println(msgCount);
+        for(int startIndex=0, endIndex=maxMsgCountPerPush; endIndex <= msgCount; startIndex+=maxMsgCountPerPush, endIndex = (endIndex+maxMsgCountPerPush>msgCount) ? msgCount : endIndex+maxMsgCountPerPush){
+            List<Integer> listPerPush = list.subList(startIndex, endIndex);
+            printItem(listPerPush);
         }
     }
 
-    private static Double calcMaxTps(Double appMaxTps, int gatewayInstanceNum){
-        BigDecimal appMaxTpsBD = new BigDecimal(appMaxTps);
-        BigDecimal gatewayInstanceNumBD = new BigDecimal(gatewayInstanceNum);
-        //保留两位小数，舍弃第三位小数
-        BigDecimal result = appMaxTpsBD.divide(gatewayInstanceNumBD,2,BigDecimal.ROUND_DOWN);
-        return result.doubleValue();
+    public static void printItem(List<Integer> list){
+        System.out.println("----------------------------");
+        for(Integer a : list){
+            System.out.println(a);
+        }
     }
+
 }
