@@ -11,7 +11,7 @@ import org.apache.commons.io.filefilter.IOFileFilter;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.List;
 import java.util.zip.Adler32;
 import java.util.zip.Checksum;
 
@@ -19,48 +19,28 @@ import java.util.zip.Checksum;
  * Created by player on 2016/7/20.
  */
 public class ImagePlay {
-    public static void main(String args[]) throws IOException, JpegProcessingException {
-        Checksum checksum = FileUtils.checksum(new File("D:\\华为手机备份\\backup_PE-TL00M_2016-06-10-10-23-38\\Image\\IMG_20151027_133308.jpg"), new Adler32());
-        System.out.println(checksum.getValue());
 
-        Metadata metadata = JpegMetadataReader.readMetadata(new File("D:\\华为手机备份\\backup_PE-TL00M_2016-06-10-10-23-38\\Image\\IMG_20151027_133308.jpg"));
-        Directory exif = metadata.getDirectory(ExifIFD0Directory.class);
-        for (Tag tag : exif.getTags()) {
-            System.out.println(tag);
-        }
+    private final static String metadata = "e:/imagetidying";
 
-//        String path = "D:\\华为手机备份\\backup_PE-TL00M_2016-06-10-10-23-38\\Image";
-//        Iterator<File> fileIterator = FileUtils.iterateFiles(new File(path), fileFilter, dirFilter);
-//        while(fileIterator.hasNext()){
-//            File next = fileIterator.next();
-//            if(next.isDirectory()){
-//                continue;
-//            }
-//            System.out.println(next.getName());
-//        }
+    private static List<String> getUploadedMd5ByDate(){
+        return null;
     }
 
+    public static void main(String args[]) throws IOException, JpegProcessingException {
 
-    private static IOFileFilter fileFilter = new IOFileFilter() {
-        public boolean accept(File file) {
-            int fileSize = (int) (file.length()/1024/1024);
-            return fileSize > 1;
+
+
+        Checksum checksum = FileUtils.checksum(new File("E:/私人文件夹/照片170114/IMG_20160721_204518.jpg"), new Adler32());
+        System.out.println(checksum.getValue());
+
+        Metadata metadata = JpegMetadataReader.readMetadata(new File("E:/私人文件夹/照片170114/IMG_20160721_204518.jpg"));
+        Directory exif = metadata.getDirectory(ExifIFD0Directory.class);
+        for (Tag tag : exif.getTags()) {
+                System.out.println(tag);
         }
 
-        public boolean accept(File dir, String name) {
-            return true;
-        }
-    };
+    }
 
-    private static IOFileFilter dirFilter = new IOFileFilter() {
-        public boolean accept(File file) {
-            return true;
-        }
-
-        public boolean accept(File dir, String name) {
-            return true;
-        }
-    };
 
 
 }
