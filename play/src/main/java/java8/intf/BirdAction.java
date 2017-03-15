@@ -7,6 +7,7 @@ public interface BirdAction {
 
     void breath();
 
+
     default void sayHi(){
         System.out.println("Bird: hi~");
     }

@@ -6,10 +6,17 @@ package lambda.entity;
 public class Student {
     private String name;
     private int age;
+    private boolean female;
 
     public Student(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public Student(String name, int age, boolean female) {
+        this.name = name;
+        this.age = age;
+        this.female = female;
     }
 
     public int getAge() {
@@ -26,6 +33,14 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isFemale() {
+        return female;
+    }
+
+    public void setFemale(boolean female) {
+        this.female = female;
     }
 
     @Override
