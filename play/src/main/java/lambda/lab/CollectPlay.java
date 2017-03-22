@@ -1,7 +1,9 @@
 package lambda.lab;
 
 import lambda.entity.Student;
+import lambda.my.StringCollector;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -42,9 +44,30 @@ public class CollectPlay {
         System.out.println();
         printMap(collect2);
 
+
+        studentStream = Stream.of(new Student("Tom", 18, false),
+                new Student("Lucy", 17, true),
+                new Student("LiLei", 18, false),
+                new Student("Lily", 17, true));
+
+        Map<Integer, List<String>> collect3 = studentStream.collect(Collectors.groupingBy(Student::getAge, Collectors.mapping(Student::getName, Collectors.toList())));
+        printMap(collect3);
+
+
+
+        studentStream = Stream.of(new Student("Tom", 18, false),
+                new Student("Lucy", 17, true),
+                new Student("LiLei", 18, false),
+                new Student("Lily", 17, true));
+
+        String result = studentStream.map(Student::getName).collect(Collectors.joining(", ", "[", "]"));
+        System.out.println(result);
+
+        List<String> aa = new ArrayList<>();
+        aa.stream().collect(Collectors.joining(",", "", ""));
     }
 
-    private static void printMap(Map<?,?> map){
+    public static void printMap(Map<?,?> map){
         for(Map.Entry<?,?> o : map.entrySet()){
             Object key = o.getKey();
             Object value = o.getValue();
