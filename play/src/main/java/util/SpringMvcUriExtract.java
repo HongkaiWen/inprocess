@@ -1,7 +1,7 @@
 package util;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class SpringMvcUriExtract {
     public static final String LOG_PATH = "C:\\Users\\hongkai\\Desktop\\log-paas.txt";
 
     private static Integer counter = 1;
-    private static String preffix = "URL_10";
+    private static String preffix = "URL_07";
 
     public static void main(String args[]) throws IOException {
         FileUtils.readLines(new File(LOG_PATH), "utf-8").stream()   //read log file
@@ -30,6 +30,7 @@ public class SpringMvcUriExtract {
                 .filter(line -> line != null && line.trim().length() != 0)  //filter blank line
                 .map(line -> extract(line, REGEX))    // extract uri
                 .filter(line -> line != null && line.trim().length() != 0) //filter blank line
+                .filter(uri -> !uri.trim().endsWith(".html"))
                 .map(line -> {
                     if(!line.endsWith(".do") && !line.endsWith(".json") && !line.endsWith(SUFFIX)){
                         return line + SUFFIX;

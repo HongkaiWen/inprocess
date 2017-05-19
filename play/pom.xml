@@ -133,6 +133,13 @@
             <version>1.2.1</version>
         </dependency>
 
+        <!--vertx-->
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
