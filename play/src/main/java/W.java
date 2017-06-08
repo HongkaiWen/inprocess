@@ -1,5 +1,6 @@
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import enumeration.Pilipala;
 
 /**
  * Created by hongkai on 2017/5/17.
@@ -7,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 public class W {
 
     public static void main(String args[]){
+
         JSONArray result = new JSONArray();
 
         result.add(generateItem("如何发布应用", "进入“容器服务”模块 -> 应用管理 -> 应用申请", false, null));
