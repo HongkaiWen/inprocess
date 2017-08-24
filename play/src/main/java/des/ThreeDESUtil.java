@@ -28,6 +28,7 @@ public class ThreeDESUtil {
      * @throws Exception 
      */
     public static String des3EncodeCBC(String key, String data) throws Exception {
+        data = paddingBlank(data);
         Security.addProvider(new BouncyCastleProvider()); 
         Key deskey = keyGenerator(key);
         Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
@@ -50,7 +51,19 @@ public class ThreeDESUtil {
         IvParameterSpec ips = new IvParameterSpec(KEY_IV);
         cipher.init(Cipher.DECRYPT_MODE, deskey, ips);
         byte[] bOut = cipher.doFinal(new BASE64Decoder().decodeBuffer(data));
-        return new String(bOut, ENCODING);
+        return new String(bOut, ENCODING).trim();
+    }
+
+    private static String paddingBlank(String source){
+        if(source == null || source.trim().length() == 0){
+            return "        ";
+        }
+        int length = source.length();
+        int needPad = 8 - (length%8);
+        for(int i=0; i<needPad; i++){
+            source += " ";
+        }
+        return source;
     }
 
     /**
@@ -96,13 +109,13 @@ public class ThreeDESUtil {
 
     private static final String ENCODING = "utf-8";
 
-//    public static void main(String[] args) throws Exception {
-//       String key = "6C4E60E55552386C759569836DC0F83869836DC0F838C0F7";
-//        String data = "amigoxieamigoxie        ";
-//        String str5 = des3EncodeCBC(key, data);
-//        System.out.println(str5);
-//
-//        String str6 = des3DecodeCBC(key, str5);
-//        System.out.println(str6);
-//    }
+    public static void main(String[] args) throws Exception {
+       String key = "6C4E60E55552386C759569836DC0F83869836DC0F838C0F7";
+        String data = "abc";
+        String str5 = des3EncodeCBC(key, data);
+        System.out.println(str5);
+
+        String str6 = des3DecodeCBC(key, str5);
+        System.out.println(str6);
+    }
 }
