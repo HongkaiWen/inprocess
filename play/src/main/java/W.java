@@ -1,31 +1,17 @@
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import enumeration.Pilipala;
-
 /**
  * Created by hongkai on 2017/5/17.
  */
 public class W {
 
     public static void main(String args[]){
-
-        JSONArray result = new JSONArray();
-
-        result.add(generateItem("如何发布应用", "进入“容器服务”模块 -> 应用管理 -> 应用申请", false, null));
-        result.add(generateItem("应用无法访问内网数据库怎么办", "进入“容器服务”模块 -> 平台应用维护 -> 选择有问题的应用 -> 应用维护 -> 网络 -> 增加网络出口规则", false, null));
-        result.add(generateItem("如何查看应用日志", "进入“容器服务”模块 -> 平台应用维护 -> 选择指定应用 -> 应用维护 -> 实例 -> 应用日志下载", false, null));
-        result.add(generateItem("浮云网新版发布", "", true, "http://www.fuyunwang.com"));
-
-        System.out.println(result.toJSONString());
-
+        // 每次new分配1M内存, 24次分配, 8， 16， 24次分别Young GC
+        for(int i=0; i<24; i++) {
+            byte[] byte1m = new byte[1 * 1024 * 1024];
+        }
+        // 10M内存Eden区容不下, S区也容不下, 直接进入Old区, 但是还不够30*50%=15M CMS GC触发条件
+        byte[] byte10m = new byte[10 * 1024 * 1024];
+        // 再分配10M 就够CMS GC触发条件了
+        byte[] byte10m2 = new byte[10 * 1024 * 1024];
     }
 
-    private static JSONObject generateItem(String title, String content, boolean redirect, String url){
-        JSONObject tip = new JSONObject();
-        tip.put("title", title);
-        tip.put("content", content);
-        tip.put("redirect", redirect);
-        tip.put("url", url);
-        return tip;
-    }
 }
