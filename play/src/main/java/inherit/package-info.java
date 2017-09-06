@@ -1,0 +1,5 @@
+package inherit;
+
+/*
+inherit play
+ */
