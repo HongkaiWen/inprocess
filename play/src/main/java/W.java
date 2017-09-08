@@ -3,15 +3,22 @@
  */
 public class W {
 
+    private static final String a = "abc";
+    private static final int b = 2;
+    private static final float c = 0.1f;
+    private static final boolean d = true;
+
+    public static String hi = "hi";
+    public String hello = "hello";
+
+    public final String p = "p";
+
     public static void main(String args[]){
-        // 每次new分配1M内存, 24次分配, 8， 16， 24次分别Young GC
-        for(int i=0; i<24; i++) {
-            byte[] byte1m = new byte[1 * 1024 * 1024];
-        }
-        // 10M内存Eden区容不下, S区也容不下, 直接进入Old区, 但是还不够30*50%=15M CMS GC触发条件
-        byte[] byte10m = new byte[10 * 1024 * 1024];
-        // 再分配10M 就够CMS GC触发条件了
-        byte[] byte10m2 = new byte[10 * 1024 * 1024];
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
+        System.out.println(333);
     }
 
 }
